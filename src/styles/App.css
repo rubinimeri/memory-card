@@ -6,4 +6,18 @@ body {
     background-size: cover;
     background-position: center;
     min-height: 100vh;
+    padding: 0;
+    margin: 0;
+
+    font-family: 'Roboto';
+    color: white;
+}
+
+h1 {
+    font-size: 40px;
+    text-align: center;
+    font-weight: 900;
+    background-color: #03012C;
+    padding: 16px 0;
+    margin: 0;
 }
