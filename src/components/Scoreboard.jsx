@@ -1,5 +1,3 @@
-import { useState } from "react"
-
 function Scoreboard({ score, highscore }) {
     return (
         <div className="scoreboard">
