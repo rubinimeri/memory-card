@@ -1,6 +1,7 @@
 import { useState } from "react"
 import DifficultySelection from "./DifficultySelection";
 import Scoreboard from "./Scoreboard";
+import { fetchImages } from "../utils";
 
 function Game() {
     const [difficulty, setDifficulty] = useState(null);

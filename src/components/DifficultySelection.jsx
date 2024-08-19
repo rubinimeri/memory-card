@@ -3,8 +3,8 @@ const MEDIUM_DIFFICULTY = 10;
 const HARD_DIFFICULTY = 15;
 
 function DifficultySelection({ setDifficulty }) {
-    function handleSelect({ target: value }) {
-        setDifficulty(value);
+    function handleSelect(e) {
+        setDifficulty(e.target.value);
     }
 
     return (

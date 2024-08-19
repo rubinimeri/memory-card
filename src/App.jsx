@@ -1,4 +1,3 @@
-import { fetchImages } from "./utils"
 import Game from "./components/Game"
 
 import './styles/App.css'
