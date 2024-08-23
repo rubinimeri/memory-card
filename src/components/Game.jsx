@@ -19,24 +19,24 @@ function Game() {
         fetchData();
     }, [difficulty])
 
-    function shuffleImages() {
-        setImages(images => 
-            images
-            .map(value => ({ value, sort: Math.random() }))
-            .sort((a, b) => a.sort - b.sort)
-            .map(({ value }) => value)
-        )
-    }
-
-    function updateScore() {
-        const newScore = score + 1;
-
-        setScore(newScore)
-        if(newScore > highscore)
-            setHighscore(newScore);
-    }
-
     const gameHandler = (() => {
+        function shuffleImages() {
+            setImages(images => 
+                images
+                .map(value => ({ value, sort: Math.random() }))
+                .sort((a, b) => a.sort - b.sort)
+                .map(({ value }) => value)
+            )
+        }
+    
+        function updateScore() {
+            const newScore = score + 1;
+    
+            setScore(newScore)
+            if(newScore > highscore)
+                setHighscore(newScore);
+        }
+
         function endGame() {
             setDifficulty(null)
             setImages(null);
