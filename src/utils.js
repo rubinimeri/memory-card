@@ -7,7 +7,7 @@ const pexels = createClient(API_KEY);
 export const fetchImages = async (numberOfImages = 5) => {
     try {
         return await pexels.photos
-            .search({ query, page: 2, per_page: numberOfImages, orientation: 'square' })
+            .search({ query, page: 1, per_page: numberOfImages, orientation: 'portrait' })
             .then(images => images.photos);
     } catch(error) {
         console.error(error.message)
