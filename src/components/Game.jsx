@@ -66,7 +66,7 @@ function Game() {
         const { id } = e.target.closest('div');
 
         // Check if ID is in selectedImageIds
-        if(selectedImageIds.find(imageId => imageId === id))
+        if(selectedImageIds.includes(id))
             gameHandler.endGame()
 
         // Add ID to selectedImageIds && shuffle images
