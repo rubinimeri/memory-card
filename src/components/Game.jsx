@@ -71,7 +71,7 @@ function Game() {
 
         // Add ID to selectedImageIds && shuffle images
         else 
-            gameHandler.continueGame()
+            gameHandler.continueGame(id)
     }
     return (
         <main className="game">
