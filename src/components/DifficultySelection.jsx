@@ -2,14 +2,23 @@ const EASY_DIFFICULTY = 5;
 const MEDIUM_DIFFICULTY = 10;
 const HARD_DIFFICULTY = 15;
 
-function DifficultySelection({ setDifficulty }) {
+function DifficultySelection({ setDifficulty, win }) {
     function handleSelect(e) {
         setDifficulty(e.target.value);
     }
 
     return (
         <div className="select-difficulty">
-            <h2>Select Difficulty</h2>
+            <div>
+                <h2 className="result">
+                    {win === true ?
+                    'You won!' :
+                    win === false ?
+                    'You lost!' :
+                    ''}
+                </h2>
+                <h2>Select Difficulty</h2>
+            </div>
             <div className="buttons">
                 <button
                 onClick={handleSelect}

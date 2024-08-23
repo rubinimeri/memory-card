@@ -77,7 +77,8 @@ function Game() {
         <main className="game">
             {difficulty === null ? 
                 <DifficultySelection 
-                setDifficulty={setDifficulty} /> : 
+                setDifficulty={setDifficulty}
+                win={gameHandler.win} /> : 
                 (<>
                     <Scoreboard
                     score={score}
