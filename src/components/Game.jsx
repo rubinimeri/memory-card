@@ -5,6 +5,7 @@ import CardList from "./CardList";
 import { fetchImages } from "../utils";
 
 function Game() {
+    const [gameStatus, setGameStatus] = useState('playing');
     const [images, setImages] = useState(null);
     const [selectedImageIds, setSelectedImageIds] = useState([]);
     const [difficulty, setDifficulty] = useState(null);
@@ -17,68 +18,62 @@ function Game() {
             setImages(data);
         }
         fetchData();
-    }, [difficulty])
+    }, [difficulty]);
 
-    const gameHandler = (() => {
-        function shuffleImages() {
-            setImages(images => 
-                images
-                .map(value => ({ value, sort: Math.random() }))
-                .sort((a, b) => a.sort - b.sort)
-                .map(({ value }) => value)
-            )
+    useEffect(() => {
+        if (images && score === images.length) {
+            endGame('win');
         }
-    
-        function updateScore() {
-            const newScore = score + 1;
-    
-            setScore(newScore)
-            if(newScore > highscore)
-                setHighscore(newScore);
-        }
+    }, [images, score]);
 
-        function endGame() {
-            setDifficulty(null)
-            setImages(null);
-            setSelectedImageIds([]);
-            setScore(0);
-        }
-    
-        function continueGame(id) {
-            setSelectedImageIds([...selectedImageIds, id])
-            shuffleImages();
-            updateScore()
-        }
+    function shuffleImages() {
+        setImages(images => 
+            images
+            .map(value => ({ value, sort: Math.random() }))
+            .sort((a, b) => a.sort - b.sort)
+            .map(({ value }) => value)
+        )
+    }
 
-        const win = images ? score === images.length : null;
+    function updateScore() {
+        const newScore = score + 1;
 
-        return {
-            endGame,
-            continueGame,
-            win
-        }
+        setScore(newScore)
+        if(newScore > highscore)
+            setHighscore(newScore);
+    }
 
-    })();
+    function endGame(status) {
+        setGameStatus(status)
+        setDifficulty(null)
+        setImages(null);
+        setSelectedImageIds([]);
+        setScore(0);
+    }
 
-    if(gameHandler.win) gameHandler.endGame()
+    function continueGame(id) {
+        setSelectedImageIds([...selectedImageIds, id])
+        shuffleImages();
+        updateScore()
+    }
 
     function handleClick(e) {
         const { id } = e.target.closest('div');
 
         // Check if ID is in selectedImageIds
         if(selectedImageIds.includes(id))
-            gameHandler.endGame()
+            endGame('lose')
 
         // Add ID to selectedImageIds && shuffle images
         else 
-            gameHandler.continueGame(id)
+            continueGame(id)
     }
     return (
         <main className="game">
             {difficulty === null ? 
                 <DifficultySelection 
                 setDifficulty={setDifficulty}
-                win={gameHandler.win} /> : 
+                win={gameStatus} /> : 
                 (<>
                     <Scoreboard
                     score={score}

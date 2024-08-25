@@ -11,9 +11,9 @@ function DifficultySelection({ setDifficulty, win }) {
         <div className="select-difficulty">
             <div>
                 <h2 className="result">
-                    {win === true ?
+                    {win === 'win' ?
                     'You won!' :
-                    win === false ?
+                    win === 'lose' ?
                     'You lost!' :
                     ''}
                 </h2>
